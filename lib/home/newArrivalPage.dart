@@ -43,22 +43,6 @@ class SecondPageState extends State<NewArrivalPage> {
   //       lorans: "Lorem ipsum dolor sit",
   //       icons: (Icons.favorite_border) as Icons),
   // ];
-  // GridTile getGridItem() {
-  //   return GridTile(
-  //     child: Column(
-  //       children: [
-  //         Container(
-
-  //           child: ClipRRect(
-  //             borderRadius: BorderRadius.circular(10),
-  //             child: Image.asset(),
-
-  //             ),
-  //         ),
-  //       ],
-
-  //   ));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +92,8 @@ class SecondPageState extends State<NewArrivalPage> {
           child: GridView.count(
             crossAxisCount: 2,
             primary: false,
-            crossAxisSpacing: 10.0,
-            mainAxisSpacing: 10.0,
+            crossAxisSpacing: 8.0,
+            mainAxisSpacing: 8.0,
             childAspectRatio: 0.7,
             children: <Widget>[
               Card(
@@ -122,7 +106,7 @@ class SecondPageState extends State<NewArrivalPage> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+                    Radius.circular(10),
                   ),
                   child: Stack(children: <Widget>[
                     Image.asset(
