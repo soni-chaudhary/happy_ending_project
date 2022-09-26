@@ -34,10 +34,6 @@ class OTPPageState extends State<OTPPage> {
                     //     context,
                     //     MaterialPageRoute(builder: (context) => NewArrivalPage()),
                     //     (route) => false);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => NewArrivalPage()));
                   },
                   icon: Icon(Icons.arrow_back_outlined));
             }),

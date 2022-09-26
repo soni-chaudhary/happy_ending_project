@@ -1,5 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:happyendingapp/home/newArrivalPage.dart';
+import 'package:happyendingapp/home/productList.dart';
 
 class FirstScreen extends StatefulWidget {
   @override
@@ -160,7 +162,6 @@ class FirstScreenState extends State<FirstScreen> {
               height: 15,
             ),
             // CATEGORIES
-
             Container(
               height: 450,
               width: MediaQuery.of(context).size.width,
@@ -185,28 +186,45 @@ class FirstScreenState extends State<FirstScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              height: 200,
-                              width: 190,
-                              child: ClipRRect(
+                            InkWell(
+                              child: Container(
+                                height: 200,
+                                width: 190,
+                                child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.asset(
                                     "images/rabbit.jpg",
                                     fit: BoxFit.cover,
-                                  )),
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProductList()));
+                              },
                             ),
                             SizedBox(
                               width: 6,
                             ),
-                            Container(
-                              height: 200,
-                              width: 190,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "images/banana.jpg",
-                                    fit: BoxFit.cover,
-                                  )),
+                            InkWell(
+                              child: Container(
+                                height: 200,
+                                width: 190,
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      "images/banana.jpg",
+                                      fit: BoxFit.cover,
+                                    )),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProductList()));
+                              },
                             ),
                           ],
                         ),
@@ -217,28 +235,44 @@ class FirstScreenState extends State<FirstScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              height: 200,
-                              width: 190,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "images/koala.jpg",
-                                    fit: BoxFit.cover,
-                                  )),
+                            InkWell(
+                              child: Container(
+                                height: 200,
+                                width: 190,
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      "images/koala.jpg",
+                                      fit: BoxFit.cover,
+                                    )),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProductList()));
+                              },
                             ),
                             SizedBox(
                               width: 6,
                             ),
-                            Container(
-                              height: 200,
-                              width: 190,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "images/family.jpg",
-                                    fit: BoxFit.cover,
-                                  )),
+                            InkWell(
+                              child: Container(
+                                height: 200,
+                                width: 190,
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      "images/family.jpg",
+                                      fit: BoxFit.cover,
+                                    )),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProductList()));
+                              },
                             ),
                           ],
                         ),
@@ -322,7 +356,7 @@ class FirstScreenState extends State<FirstScreen> {
             ),
             // TOP SELLING
             Container(
-              height: 315,
+              height: 325,
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
               child: Column(
@@ -340,7 +374,7 @@ class FirstScreenState extends State<FirstScreen> {
                     ),
                   ),
                   Container(
-                    height: 280,
+                    height: 290,
                     width: MediaQuery.of(context).size.width,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
@@ -372,13 +406,28 @@ class FirstScreenState extends State<FirstScreen> {
                                 ),
                               )),
                               Container(
-                                margin: EdgeInsets.only(left: 15, bottom: 2),
-                                child: Text(
-                                  "Lorem ipsum dolor sit amet",
-                                  style: TextStyle(
-                                      // fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 10),
+                                height: 30,
+                                // margin: EdgeInsets.only(bottom: 20),
+                                margin: EdgeInsets.only(left: 10),
+                                child: Row(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Lorem ipsum dolor sit amet",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 10),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        Icons.favorite_border,
+                                        size: 20,
+                                        color: Colors.black,
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                               Container(
@@ -408,7 +457,7 @@ class FirstScreenState extends State<FirstScreen> {
                                             bottomRight:
                                                 Radius.circular(10.0))),
                                     width: MediaQuery.of(context).size.width,
-                                    margin: EdgeInsets.only(top: 8),
+                                    margin: EdgeInsets.only(top: 3),
                                     child: Padding(
                                       padding:
                                           EdgeInsets.only(left: 15, top: 5),
@@ -526,76 +575,3 @@ class FirstScreenState extends State<FirstScreen> {
     );
   }
 }
-
-// Container(
-//                     child: ListView(
-//                       scrollDirection: Axis.horizontal,
-//                       children: [
-//                         GridView.count(
-//                           crossAxisCount: 2,
-//                           primary: false,
-//                           crossAxisSpacing: 10.0,
-//                           mainAxisSpacing: 10.0,
-//                           childAspectRatio: 0.7,
-//                           children: [
-//                             Card(
-//                               color: Colors.white,
-//                               elevation: 5,
-//                               shape: RoundedRectangleBorder(
-//                                 borderRadius: BorderRadius.all(
-//                                   Radius.circular(10),
-//                                 ),
-//                               ),
-//                               child: ClipRRect(
-//                                   borderRadius: BorderRadius.all(
-//                                     Radius.circular(10),
-//                                   ),
-//                                   child: Stack(
-//                                     children: [
-//                                       Image.asset(
-//                                         "images/tha.jpg",
-//                                         height: 190,
-//                                         width: 200,
-//                                         fit: BoxFit.fitWidth,
-//                                       ),
-//                                       Column(
-//                                         mainAxisAlignment:
-//                                             MainAxisAlignment.end,
-//                                         crossAxisAlignment:
-//                                             CrossAxisAlignment.start,
-//                                         children: [
-//                                           Container(
-//                                             height: 30,
-//                                             margin: EdgeInsets.only(left: 10),
-//                                             child: Row(
-//                                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                               children: [
-//                                                 Text(
-//                                                   "Lorem ipsum dolor sit amet",
-//                                                   style: TextStyle(
-//                                                       fontWeight:
-//                                                           FontWeight.bold,
-//                                                       color: Colors.black,
-//                                                       fontSize: 10),
-//                                                 ),
-//                                                 IconButton(
-//                                                   onPressed: () {},
-//                                                   icon: Icon(
-//                                                     Icons.favorite_border,
-//                                                     size: 20,
-//                                                     color: Colors.black,
-//                                                   ),
-//                                                 )
-//                                               ],
-//                                             ),
-//                                           ),
-//                                         ],
-//                                       ),
-//                                     ],
-//                                   ),),
-//                             ),
-//                           ],
-//                         ),
-//                       ],
-//                     ),
-//                   ),

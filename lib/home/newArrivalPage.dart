@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happyendingapp/home/firstScreen.dart';
 
 class NewArrivalPage extends StatefulWidget {
   @override
@@ -54,7 +55,10 @@ class SecondPageState extends State<NewArrivalPage> {
               Icons.arrow_back_outlined,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => FirstScreen()));
+            },
           ),
           backgroundColor: Colors.white,
           title: Text(
@@ -96,85 +100,7 @@ class SecondPageState extends State<NewArrivalPage> {
             mainAxisSpacing: 8.0,
             childAspectRatio: 0.7,
             children: <Widget>[
-              Card(
-                color: Colors.white,
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                  child: Stack(children: <Widget>[
-                    Image.asset(
-                      "images/tha.jpg",
-                      height: 190,
-                      width: 200,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            height: 30,
-                            // margin: EdgeInsets.only(bottom: 20),
-                            margin: EdgeInsets.only(left: 10),
-
-                            child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Lorem ipsum dolor sit amet",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 10),
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.favorite_border,
-                                    size: 20,
-                                    color: Colors.black,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10, bottom: 2),
-                            child: Text(
-                              "Lorem ipsum dolor sit amet",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 7),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10, bottom: 2),
-                            child: Text(
-                              "₹ 456",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 12),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(bottom: 15, left: 10),
-                            child: Text(
-                              "Lorem ipsum dolor sit amet",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 7),
-                            ),
-                          ),
-                        ]),
-                  ]),
-                ),
-              ),
+              // arrivalCard(),
               Card(
                 color: Colors.white,
                 elevation: 5,
@@ -575,3 +501,92 @@ class SecondPageState extends State<NewArrivalPage> {
         ));
   }
 }
+
+// class arrivalCard extends StatelessWidget {
+//   const arrivalCard({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       color: Colors.white,
+//       elevation: 5,
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.all(
+//           Radius.circular(10),
+//         ),
+//       ),
+//       child: ClipRRect(
+//         borderRadius: BorderRadius.all(
+//           Radius.circular(10),
+//         ),
+//         child: Stack(children: <Widget>[
+//           Image.asset(
+//             "images/tha.jpg",
+//             height: 190,
+//             width: 200,
+//             fit: BoxFit.fitWidth,
+//           ),
+//           Column(
+//               mainAxisAlignment: MainAxisAlignment.end,
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: <Widget>[
+//                 Container(
+//                   height: 30,
+//                   // margin: EdgeInsets.only(bottom: 20),
+//                   margin: EdgeInsets.only(left: 10),
+
+//                   child: Row(
+//                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                     children: [
+//                       Text(
+//                         "Lorem ipsum dolor sit amet",
+//                         style: TextStyle(
+//                             fontWeight: FontWeight.bold,
+//                             color: Colors.black,
+//                             fontSize: 10),
+//                       ),
+//                       IconButton(
+//                         onPressed: () {},
+//                         icon: Icon(
+//                           Icons.favorite_border,
+//                           size: 20,
+//                           color: Colors.black,
+//                         ),
+//                       )
+//                     ],
+//                   ),
+//                 ),
+//                 Container(
+//                   margin: EdgeInsets.only(left: 10, bottom: 2),
+//                   child: Text(
+//                     "Lorem ipsum dolor sit amet",
+//                     style:
+//                         TextStyle(color: Colors.black, fontSize: 7),
+//                   ),
+//                 ),
+//                 Container(
+//                   margin: EdgeInsets.only(left: 10, bottom: 2),
+//                   child: Text(
+//                     "₹ 456",
+//                     style: TextStyle(
+//                         fontWeight: FontWeight.bold,
+//                         color: Colors.black,
+//                         fontSize: 12),
+//                   ),
+//                 ),
+//                 Container(
+//                   margin: EdgeInsets.only(bottom: 15, left: 10),
+//                   child: Text(
+//                     "Lorem ipsum dolor sit amet",
+//                     style:
+//                         TextStyle(color: Colors.black, fontSize: 7),
+//                   ),
+//                 ),
+//               ]),
+//         ]),
+//       ),
+//     );
+//   }
+// }
