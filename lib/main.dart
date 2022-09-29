@@ -1,5 +1,4 @@
 import 'dart:async';
-// import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:happyendingapp/screens/signIn.dart';
 import 'package:happyendingapp/themes/darkTheme.dart';
@@ -29,7 +28,7 @@ class SplashState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 4),
+        Duration(seconds: 10),
         (() => Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => SignIn()),
@@ -43,7 +42,7 @@ class SplashState extends State<SplashScreen> {
         color: Colors.redAccent,
         height: MediaQuery.of(context).size.height,
         child: Image.asset(
-          'images/splash_screen.gif',
+          'images/splash_screen1.gif',
           fit: BoxFit.cover,
         ),
       ),
