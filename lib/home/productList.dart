@@ -1,10 +1,9 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:happyendingapp/filter_pages/filterPage.dart';
 import 'package:happyendingapp/home/firstScreen.dart';
+import 'package:happyendingapp/home/productDetain.dart';
 import 'package:happyendingapp/sortPage/sortPage.dart';
-
 import '../models/newArrivalModel.dart';
 
 class ProductList extends StatefulWidget {
@@ -241,82 +240,88 @@ class arrivalCard extends StatelessWidget {
   final String lorans;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(
-          Radius.circular(8),
-        ),
-        child: Stack(children: <Widget>[
-          Image.asset(
-            img,
-            height: 180,
-            width: 200,
-            fit: BoxFit.fitWidth,
+    return InkWell(
+      child: Card(
+        color: Colors.white,
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
           ),
-          Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  height: 30,
-                  // margin: EdgeInsets.only(bottom: 20),
-                  margin: EdgeInsets.only(left: 10),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(
+            Radius.circular(8),
+          ),
+          child: Stack(children: <Widget>[
+            Image.asset(
+              img,
+              height: 180,
+              width: 200,
+              fit: BoxFit.fitWidth,
+            ),
+            Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    height: 30,
+                    // margin: EdgeInsets.only(bottom: 20),
+                    margin: EdgeInsets.only(left: 10),
 
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        like,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 10),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.favorite_border,
-                          size: 20,
-                          color: Colors.black,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          like,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 10),
                         ),
-                      )
-                    ],
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.favorite_border,
+                            size: 20,
+                            color: Colors.black,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 10, bottom: 2),
-                  child: Text(
-                    lorans,
-                    style: TextStyle(color: Colors.black, fontSize: 7),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, bottom: 2),
+                    child: Text(
+                      lorans,
+                      style: TextStyle(color: Colors.black, fontSize: 7),
+                    ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 10, bottom: 2),
-                  child: Text(
-                    prise,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 12),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, bottom: 2),
+                    child: Text(
+                      prise,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 12),
+                    ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 15, left: 10),
-                  child: Text(
-                    loram,
-                    style: TextStyle(color: Colors.black, fontSize: 7),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 15, left: 10),
+                    child: Text(
+                      loram,
+                      style: TextStyle(color: Colors.black, fontSize: 7),
+                    ),
                   ),
-                ),
-              ]),
-        ]),
+                ]),
+          ]),
+        ),
       ),
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ProductDetailPage()));
+      },
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happyendingapp/screens/cardScreen.dart';
 
 class FilterPage extends StatefulWidget {
   @override
@@ -135,7 +136,10 @@ class _FilterState extends State<FilterPage> {
             child: Material(
               color: Colors.white,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CardScreen()));
+                },
                 child: SizedBox(
                   height: 50,
                   child: Padding(
