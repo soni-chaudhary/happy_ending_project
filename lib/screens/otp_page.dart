@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happyendingapp/home/firstScreen.dart';
 import 'package:happyendingapp/home/newArrivalPage.dart';
-import 'package:happyendingapp/screens/signIn.dart';
+import 'package:happyendingapp/screens/sign_in.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class OTPPage extends StatefulWidget {

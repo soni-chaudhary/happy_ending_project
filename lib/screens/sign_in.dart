@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:happyendingapp/home/firstScreen.dart';
 import 'package:happyendingapp/screens/forgetPassword.dart';
 import 'package:happyendingapp/screens/otp_page.dart';
 import 'package:happyendingapp/screens/singUp.dart';

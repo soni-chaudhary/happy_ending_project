@@ -15,13 +15,15 @@ class CardState extends State<CardScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_outlined,
-            color: Colors.grey.shade800,
-          ),
-          onPressed: () {},
-        ),
+        iconTheme: IconThemeData.fallback(),
+
+        // leading: IconButton(
+        //   icon: Icon(
+        //     Icons.arrow_back_outlined,
+        //     color: Colors.grey.shade800,
+        //   ),
+        //   onPressed: () {},
+        // ),
         title: Text(
           "Cart",
           style: TextStyle(

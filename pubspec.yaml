@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   sms_autofill: ^2.2.0
   carousel_slider: ^4.1.1
+  
 
 dev_dependencies:
   flutter_test:

@@ -1,11 +1,15 @@
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:happyendingapp/home/newArrivalPage.dart';
+import 'package:happyendingapp/home/productDetain.dart';
 import 'package:happyendingapp/home/productList.dart';
 import 'package:happyendingapp/menu/drawer_menu.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 
 class FirstScreen extends StatefulWidget {
+  const FirstScreen({super.key});
+
   @override
   FirstScreenState createState() => FirstScreenState();
 }
@@ -50,7 +54,7 @@ class FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 252, 236, 242),
+      backgroundColor: Colors.white,
       drawer: MenuBar(),
       appBar: AppBar(
         leading: Builder(builder: (BuildContext context) {
@@ -168,13 +172,18 @@ class FirstScreenState extends State<FirstScreen> {
                     child: CarouselSlider(
                       items: bottomImage
                           .map(
-                            (item) => Container(
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  item.img,
-                                  fit: BoxFit.cover,
-                                  width: 260,
-                                  // MediaQuery.of(context).size.width ,
+                            (item) => GestureDetector(
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => NewArrivalPage())),
+                              child: Container(
+                                child: ClipRRect(
+                                  child: Image.asset(
+                                    item.img,
+                                    fit: BoxFit.cover,
+                                    width: 260,
+                                    // MediaQuery.of(context).size.width ,
+                                  ),
                                 ),
                               ),
                             ),
@@ -603,12 +612,18 @@ class FirstScreenState extends State<FirstScreen> {
                     child: CarouselSlider(
                       items: bottomImage
                           .map(
-                            (item) => Container(
-                              height: 270,
-                              child: Image.asset(
-                                item.img,
-                                fit: BoxFit.cover,
-                                width: MediaQuery.of(context).size.width,
+                            (item) => GestureDetector(
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProductDetailPage())),
+                              child: Container(
+                                height: 270,
+                                child: Image.asset(
+                                  item.img,
+                                  fit: BoxFit.cover,
+                                  width: MediaQuery.of(context).size.width,
+                                ),
                               ),
                             ),
                           )
