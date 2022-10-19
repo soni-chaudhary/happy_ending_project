@@ -1,12 +1,13 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:happyendingapp/filter_pages/filterPage.dart';
 import 'package:happyendingapp/home/firstScreen.dart';
-import 'package:happyendingapp/home/productDetain.dart';
+import 'package:happyendingapp/home/product_detail.dart';
 import 'package:happyendingapp/sortPage/sortPage.dart';
-import '../models/newArrivalModel.dart';
+import '../models/new_arrival_model.dart';
 
 class ProductList extends StatefulWidget {
+  const ProductList({super.key});
+
   @override
   ProductPageState createState() => ProductPageState();
 }
@@ -16,7 +17,7 @@ class ProductPageState extends State<ProductList> {
     NewArrivalModel(
       img: "images/doll.jpg",
       prise: "₹ 456",
-      like: "Lorem ipsum dolor sit amet",
+      like: "Lorem ipsum dolor sit",
       loram: "Lorem ipsum dolor sit",
       lorans: "Lorem ipsum dolor sit",
       // icons: (Icons.favorite_border) as Icons
@@ -24,7 +25,7 @@ class ProductPageState extends State<ProductList> {
     NewArrivalModel(
       img: "images/tha.jpg",
       prise: "₹ 456",
-      like: "Lorem ipsum dolor sit amet",
+      like: "Lorem ipsum dolor sit",
       loram: "Lorem ipsum dolor sit",
       lorans: "Lorem ipsum dolor sit",
       // icons: (Icons.favorite_border) as Icons
@@ -32,7 +33,7 @@ class ProductPageState extends State<ProductList> {
     NewArrivalModel(
       img: "images/thb.jpg",
       prise: "₹ 466",
-      like: "Lorem ipsum dolor sit amet",
+      like: "Lorem ipsum dolor sit",
       loram: "Lorem ipsum dolor sit",
       lorans: "Lorem ipsum dolor sit",
       // icons: (Icons.favorite_border) as Icons
@@ -40,7 +41,7 @@ class ProductPageState extends State<ProductList> {
     NewArrivalModel(
       img: "images/thd.jpg",
       prise: "₹ 699",
-      like: "Lorem ipsum dolor sit amet",
+      like: "Lorem ipsum dolor sit",
       loram: "Lorem ipsum dolor sit",
       lorans: "Lorem ipsum dolor sit",
       // icons: (Icons.favorite_border) as Icons
@@ -48,7 +49,7 @@ class ProductPageState extends State<ProductList> {
     NewArrivalModel(
       img: "images/koala.jpg",
       prise: "₹ 499",
-      like: "Lorem ipsum dolor sit amet",
+      like: "Lorem ipsum dolor sit",
       loram: "Lorem ipsum dolor sit",
       lorans: "Lorem ipsum dolor sit",
       // icons: (Icons.favorite_border) as Icons
@@ -77,18 +78,9 @@ class ProductPageState extends State<ProductList> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_outlined,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => FirstScreen()));
-          },
-        ),
+        iconTheme: const IconThemeData.fallback(),
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           "New Arrival",
           style: TextStyle(
             color: Colors.black,
@@ -97,21 +89,21 @@ class ProductPageState extends State<ProductList> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Colors.black,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite_border,
               color: Colors.black,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.shopify_sharp,
               color: Colors.black,
             ),
@@ -124,20 +116,17 @@ class ProductPageState extends State<ProductList> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                  child: Image.asset("images/sell_banner.jpg"),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(8),
                 ),
+                child: Image.asset("images/sell_banner.jpg"),
               ),
             ),
             Expanded(
               child: GridView.count(
                   crossAxisCount: 2,
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   crossAxisSpacing: 2.0,
                   mainAxisSpacing: 0.4,
                   childAspectRatio: 0.7,
@@ -159,7 +148,7 @@ class ProductPageState extends State<ProductList> {
           child: Container(
             decoration: BoxDecoration(
                 border: Border.all(
-                    width: 1, color: Color.fromARGB(179, 209, 207, 207))),
+                    width: 1, color: const Color.fromARGB(179, 209, 207, 207))),
             child: Material(
               color: Colors.white,
               child: InkWell(
@@ -244,13 +233,13 @@ class arrivalCard extends StatelessWidget {
       child: Card(
         color: Colors.white,
         elevation: 5,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(8),
           ),
           child: Stack(children: <Widget>[
@@ -258,30 +247,28 @@ class arrivalCard extends StatelessWidget {
               img,
               height: 180,
               width: 200,
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.cover,
             ),
             Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   Container(
                     height: 30,
-                    // margin: EdgeInsets.only(bottom: 20),
-                    margin: EdgeInsets.only(left: 10),
-
+                    margin: const EdgeInsets.only(left: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           like,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
-                              fontSize: 10),
+                              fontSize: 12),
                         ),
                         IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.favorite_border,
                             size: 20,
                             color: Colors.black,
@@ -291,27 +278,27 @@ class arrivalCard extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 10, bottom: 2),
+                    margin: const EdgeInsets.only(left: 10, bottom: 2),
                     child: Text(
                       lorans,
-                      style: TextStyle(color: Colors.black, fontSize: 7),
+                      style: const TextStyle(color: Colors.black, fontSize: 8),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 10, bottom: 2),
+                    margin: const EdgeInsets.only(left: 10, bottom: 2),
                     child: Text(
                       prise,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
-                          fontSize: 12),
+                          fontSize: 14),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: 15, left: 10),
+                    margin: const EdgeInsets.only(bottom: 15, left: 10),
                     child: Text(
                       loram,
-                      style: TextStyle(color: Colors.black, fontSize: 7),
+                      style: const TextStyle(color: Colors.black, fontSize: 8),
                     ),
                   ),
                 ]),
@@ -320,7 +307,7 @@ class arrivalCard extends StatelessWidget {
       ),
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ProductDetailPage()));
+            MaterialPageRoute(builder: (context) => const ProductDetailPage()));
       },
     );
   }

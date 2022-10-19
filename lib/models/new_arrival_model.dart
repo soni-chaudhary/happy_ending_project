@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class NewArrivalModel {
   final String img;
   final String prise;

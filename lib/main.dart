@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:happyendingapp/screens/sign_in.dart';
-import 'package:happyendingapp/screens/singUp.dart';
+import 'package:happyendingapp/screens/sign_up.dart';
 import 'package:happyendingapp/themes/darkTheme.dart';
 
 void main() {
@@ -32,7 +32,7 @@ class SplashState extends State<SplashScreen> {
         Duration(seconds: 10),
         (() => Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => SignUpPage()),
+            MaterialPageRoute(builder: (context) => SignIn()),
             (route) => false)));
   }
 

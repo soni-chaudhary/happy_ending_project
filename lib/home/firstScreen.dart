@@ -1,9 +1,9 @@
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:happyendingapp/home/newArrivalPage.dart';
-import 'package:happyendingapp/home/productDetain.dart';
-import 'package:happyendingapp/home/productList.dart';
+import 'package:happyendingapp/home/new_arrival_page.dart';
+import 'package:happyendingapp/home/product_detail.dart';
+import 'package:happyendingapp/home/product_list.dart';
 import 'package:happyendingapp/menu/drawer_menu.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 
@@ -53,39 +53,32 @@ class FirstScreenState extends State<FirstScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       drawer: MenuBar(),
       appBar: AppBar(
-        leading: Builder(builder: (BuildContext context) {
-          return IconButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            icon: Icon(Icons.menu),
-            color: Colors.black,
-          );
-        }),
+        iconTheme: const IconThemeData.fallback(),
         backgroundColor: Colors.white,
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Colors.black,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite_border,
               color: Colors.black,
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.card_travel,
               color: Colors.black,
             ),
@@ -93,576 +86,420 @@ class FirstScreenState extends State<FirstScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // LOREM IPSUM DOLOR SIT AMET PAGE
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: CarouselSlider(
-                items: firstImgList
-                    .map(
-                      (item) => Container(
-                        child: ClipRRect(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                width: width,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    CarouselSlider(
+                      items: firstImgList
+                          .map(
+                            (item) => ClipRRect(
+                              child: Image.asset(
+                                item.img,
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      options: CarouselOptions(
+                          autoPlay: true,
+                          height: 400.0,
+                          enableInfiniteScroll: true,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              _currentColor = index;
+                            });
+                          },
+                          viewportFraction: 1),
+                    ),
+                    Container(
+                      height: 25,
+                      color: Colors.transparent,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: firstImgList.map((item) {
+                            int index = firstImgList.indexOf(item);
+                            return Container(
+                              height: 8,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: _currentColor == index
+                                      ? Color.fromRGBO(0, 0, 0, 0.9)
+                                      : Color.fromRGBO(0, 0, 0, 0.4)),
+                            );
+                          }).toList()),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: width * 0.04),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+                child: Text(
+                  "COLLECTIONS",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: width * 0.05),
+                ),
+              ),
+              SizedBox(height: width * 0.04),
+              Container(
+                // height: 270,
+                width: MediaQuery.of(context).size.width,
+                child: CarouselSlider(
+                  items: bottomImage
+                      .map(
+                        (item) => GestureDetector(
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => NewArrivalPage())),
+                          child: Container(
+                            child: ClipRRect(
+                              child: Image.asset(
+                                item.img,
+                                fit: BoxFit.cover,
+                                width: 260,
+                                // MediaQuery.of(context).size.width ,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  options: CarouselOptions(
+                      autoPlay: true,
+                      height: 200.0,
+                      enableInfiniteScroll: true,
+                      viewportFraction: 0.7),
+                ),
+              ),
+              SizedBox(height: width * 0.04),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+                child: Text(
+                  "CATEGORIES",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: width * 0.05),
+                ),
+              ),
+              SizedBox(height: width * 0.04),
+              Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          height: 200,
+                          width: 190,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              "images/rabbit.jpg",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductList()));
+                        },
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          height: 200,
+                          width: 190,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                "images/banana.jpg",
+                                fit: BoxFit.cover,
+                              )),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductList()));
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          height: 200,
+                          width: 190,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                "images/koala.jpg",
+                                fit: BoxFit.cover,
+                              )),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductList()));
+                        },
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          height: 200,
+                          width: 190,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                "images/family.jpg",
+                                fit: BoxFit.cover,
+                              )),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductList()));
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: width * 0.04),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+                child: Text(
+                  "OFFICIAL MERCHANDISE",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: width * 0.05),
+                ),
+              ),
+              SizedBox(height: width * 0.04),
+              CarouselSlider(
+                items: marchandise
+                    .map((item) => ClipRRect(
                           child: Image.asset(
                             item.img,
                             fit: BoxFit.cover,
-                            width: MediaQuery.of(context).size.width,
+                            width: 260,
                           ),
+                        ))
+                    .toList(),
+                options: CarouselOptions(
+                    autoPlay: true,
+                    viewportFraction: 0.7,
+                    enableInfiniteScroll: true,
+                    height: 80),
+              ),
+              SizedBox(height: width * 0.04),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+                child: Text(
+                  "TOP SELLING",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: width * 0.05),
+                ),
+              ),
+              SizedBox(height: width * 0.04),
+              CarouselSlider(
+                items: topSelling
+                    .map(
+                      (item) => Container(
+                        margin: EdgeInsets.all(5),
+                        width: 190,
+                        height: 270,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
+                          border: Border.all(width: 1, color: Colors.black45),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(9.0),
+                                topRight: Radius.circular(9.0),
+                              ),
+                              child: Image.asset(
+                                item.img,
+                                fit: BoxFit.cover,
+                                width: width,
+                                height: 200,
+                              ),
+                            ),
+                            SizedBox(height: width * 0.01),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: width * 0.02),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: const [
+                                      Text(
+                                        "Lorem ipsum dolor sit",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 12),
+                                      ),
+                                      Icon(
+                                        Icons.favorite_border,
+                                        size: 20,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                  const Text(
+                                    "Lorem",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 8),
+                                  ),
+                                  SizedBox(height: width * 0.01),
+                                  const Text(
+                                    "₹ 456",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 12),
+                                  ),
+                                  SizedBox(height: width * 0.04)
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey.shade200,
+                                      borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(10.0),
+                                          bottomRight: Radius.circular(10.0))),
+                                  width: width,
+                                  child: const Center(
+                                    child: Text(
+                                      "Lorem ipsum dolor sit amet, consectetur",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 8,
+                                        // fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  )),
+                            ),
+                          ],
                         ),
                       ),
                     )
                     .toList(),
                 options: CarouselOptions(
-                    autoPlay: true,
-                    height: 400.0,
-                    enableInfiniteScroll: true,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _currentColor = index;
-                      });
-                    },
-                    viewportFraction: 1),
+                  autoPlay: true,
+                  height: 300,
+                  viewportFraction: 0.5,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _currentColor = index;
+                    });
+                  },
+                ),
               ),
-            ),
-
-            Container(
-              height: 25,
-              color: Colors.white,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: firstImgList.map((item) {
-                    int index = firstImgList.indexOf(item);
-                    return Container(
-                      height: 8,
-                      width: 35,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _currentColor == index
-                              ? Color.fromRGBO(0, 0, 0, 0.9)
-                              : Color.fromRGBO(0, 0, 0, 0.4)),
-                    );
-                  }).toList()),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-
-            // COLLECTIONS
-
-            Container(
-              height: 270,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Text(
-                      "COLLECTIONS",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: CarouselSlider(
-                      items: bottomImage
-                          .map(
-                            (item) => GestureDetector(
-                              onTap: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (context) => NewArrivalPage())),
-                              child: Container(
-                                child: ClipRRect(
-                                  child: Image.asset(
-                                    item.img,
-                                    fit: BoxFit.cover,
-                                    width: 260,
-                                    // MediaQuery.of(context).size.width ,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      options: CarouselOptions(
-                          autoPlay: true,
-                          height: 200.0,
-                          enableInfiniteScroll: true,
-                          viewportFraction: 0.7),
-                    ),
-                  ),
-                ],
+              SizedBox(height: width * 0.04),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+                child: Text(
+                  "FEATURED PRODUCT",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: width * 0.05),
+                ),
               ),
-            ),
-
-            // Container(
-            //   width: MediaQuery.of(context).size.width,
-            //   child: CarouselSlider(
-            //     items: firstImgList
-            //         .map(
-            //           (item) => Container(
-            //             child: ClipRRect(
-            //               child: Image.asset(
-            //                 item.img,
-            //                 fit: BoxFit.cover,
-            //                 width: MediaQuery.of(context).size.width,
-            //               ),
-            //             ),
-            //           ),
-            //         )
-            //         .toList(),
-            //     options: CarouselOptions(
-            //         autoPlay: true,
-            //         height: 400.0,
-            //         enableInfiniteScroll: true,
-            //         viewportFraction: 1),
-            //   ),
-            // ),
-
-            SizedBox(
-              height: 15,
-            ),
-            // CATEGORIES
-            Container(
-              height: 450,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              SizedBox(height: width * 0.04),
+              Stack(
+                alignment: Alignment.bottomCenter,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Text(
-                      " CATEGORIES ",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ),
-                  ),
-                  Container(
-                    child: Column(
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            InkWell(
-                              child: Container(
-                                height: 200,
-                                width: 190,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "images/rabbit.jpg",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ProductList()));
-                              },
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            InkWell(
-                              child: Container(
-                                height: 200,
-                                width: 190,
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      "images/banana.jpg",
-                                      fit: BoxFit.cover,
-                                    )),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ProductList()));
-                              },
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            InkWell(
-                              child: Container(
-                                height: 200,
-                                width: 190,
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      "images/koala.jpg",
-                                      fit: BoxFit.cover,
-                                    )),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ProductList()));
-                              },
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            InkWell(
-                              child: Container(
-                                height: 200,
-                                width: 190,
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      "images/family.jpg",
-                                      fit: BoxFit.cover,
-                                    )),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ProductList()));
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-            Container(
-              height: 25,
-              color: Colors.white,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: firstImgList.map((item) {
-                    int index = firstImgList.indexOf(item);
-                    return Container(
-                      height: 8,
-                      width: 35,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _currentColor == index
-                              ? Color.fromRGBO(0, 0, 0, 0.9)
-                              : Color.fromRGBO(0, 0, 0, 0.4)),
-                    );
-                  }).toList()),
-            ),
-
-            SizedBox(
-              height: 15,
-            ),
-
-            // OFFICIAL MERCHENDISE
-            Container(
-              height: 150,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Text(
-                      "OFFICIAL MERCHANDISE",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ),
-                  ),
-                  Container(
-                    height: 100,
-                    // width: MediaQuery.of(context).size.width,
-                    child: CarouselSlider(
-                      items: marchandise
-                          .map((item) => Container(
-                                child: ClipRRect(
-                                  child: Image.asset(
-                                    item.img,
-                                    fit: BoxFit.cover,
-                                    width: 260,
-                                  ),
-                                ),
-                              ))
-                          .toList(),
-                      options: CarouselOptions(
-                          autoPlay: true,
-                          viewportFraction: 0.7,
-                          enableInfiniteScroll: true,
-                          height: 80),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(
-              height: 15,
-            ),
-            // TOP SELLING
-            Container(
-              height: 325,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Text(
-                      "TOP SELLING",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ),
-                  ),
-                  Container(
-                    height: 290,
-                    width: MediaQuery.of(context).size.width,
-                    child: CarouselSlider(
-                      items: topSelling
-                          .map(
-                            (item) => Container(
-                              margin: EdgeInsets.all(5),
-                              width: 190,
+                  CarouselSlider(
+                    items: bottomImage
+                        .map(
+                          (item) => GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) => ProductDetailPage())),
+                            child: Container(
                               height: 270,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10.0),
-                                border:
-                                    Border.all(width: 1, color: Colors.black45),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                      child: ClipRRect(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(9.0),
-                                      topRight: Radius.circular(9.0),
-                                    ),
-                                    child: Image.asset(
-                                      item.img,
-                                      fit: BoxFit.cover,
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 200,
-                                    ),
-                                  )),
-                                  Container(
-                                    height: 30,
-                                    // margin: EdgeInsets.only(bottom: 20),
-                                    margin: EdgeInsets.only(left: 10),
-                                    child: Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Lorem ipsum dolor sit amet",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 10),
-                                        ),
-                                        IconButton(
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.favorite_border,
-                                            size: 20,
-                                            color: Colors.black,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    margin:
-                                        EdgeInsets.only(left: 15, bottom: 2),
-                                    child: Text(
-                                      "Lorem ",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 7),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin:
-                                        EdgeInsets.only(left: 15, bottom: 2),
-                                    child: Text(
-                                      "₹ 456",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 12),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey.shade200,
-                                            borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(10.0),
-                                                bottomRight:
-                                                    Radius.circular(10.0))),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        margin: EdgeInsets.only(top: 3),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsets.only(left: 15, top: 5),
-                                          child: Text(
-                                            "Lorem ipsum dolor sit amet, consectetur",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 8,
-                                              // fontWeight: FontWeight.bold
-                                            ),
-                                          ),
-                                        )),
-                                  ),
-                                ],
+                              child: Image.asset(
+                                item.img,
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width,
                               ),
                             ),
-                          )
-                          .toList(),
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        height: 300,
-                        viewportFraction: 0.5,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _currentColor = index;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            Container(
-              height: 25,
-              color: Colors.white,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: firstImgList.map((item) {
-                    int index = firstImgList.indexOf(item);
-                    return Container(
-                      height: 8,
-                      width: 35,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _currentColor == index
-                              ? Color.fromRGBO(0, 0, 0, 0.9)
-                              : Color.fromRGBO(0, 0, 0, 0.4)),
-                    );
-                  }).toList()),
-            ),
-
-            SizedBox(
-              height: 15,
-            ),
-
-//FEATURED PRODUCT
-
-            Container(
-              height: 305,
-              width: MediaQuery.of(context).size.width,
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Text(
-                      "FEATURED PRODUCT",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
+                          ),
+                        )
+                        .toList(),
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      viewportFraction: 1,
+                      height: 270,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _currentColor = index;
+                        });
+                      },
                     ),
                   ),
                   Container(
-                    height: 270,
-                    width: MediaQuery.of(context).size.width,
-                    child: CarouselSlider(
-                      items: bottomImage
-                          .map(
-                            (item) => GestureDetector(
-                              onTap: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ProductDetailPage())),
-                              child: Container(
-                                height: 270,
-                                child: Image.asset(
-                                  item.img,
-                                  fit: BoxFit.cover,
-                                  width: MediaQuery.of(context).size.width,
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        viewportFraction: 1,
-                        height: 270,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _currentColor = index;
-                          });
-                        },
-                      ),
-                    ),
+                    height: 25,
+                    color: Colors.transparent,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: bottomImage.map((item) {
+                          int index = bottomImage.indexOf(item);
+                          return Container(
+                            height: 8,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: _currentColor == index
+                                    ? Color.fromRGBO(0, 0, 0, 0.9)
+                                    : Color.fromRGBO(0, 0, 0, 0.4)),
+                          );
+                        }).toList()),
                   ),
                 ],
               ),
-            ),
-
-            Container(
-              height: 25,
-              color: Colors.white,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: bottomImage.map((item) {
-                    int index = bottomImage.indexOf(item);
-                    return Container(
-                      height: 8,
-                      width: 35,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _currentColor == index
-                              ? Color.fromRGBO(0, 0, 0, 0.9)
-                              : Color.fromRGBO(0, 0, 0, 0.4)),
-                    );
-                  }).toList()),
-            ),
-          ],
+              SizedBox(height: width * 0.04),
+            ],
+          ),
         ),
       ),
     );

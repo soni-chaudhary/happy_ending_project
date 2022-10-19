@@ -1,62 +1,28 @@
 import 'package:flutter/material.dart';
 
 class OrderManage extends StatefulWidget {
+  const OrderManage({super.key});
+
   @override
   OrderManageState createState() => OrderManageState();
 }
 
 class OrderManageState extends State<OrderManage> {
-  List _listName = ["Miniature", "Bobblehead", "3D Figurine", "Superhero"];
+  final List _listName = [
+    "Miniature",
+    "Bobblehead",
+    "3D Figurine",
+    "Superhero"
+  ];
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData.fallback(),
-        // leading: IconButton(
-        //   icon: Icon(
-        //     Icons.arrow_back_outlined,
-        //     color: Colors.grey.shade800,
-        //   ),
-        //   onPressed: () {},
-        // ),
-
-        // leading: Builder(builder: (BuildContext context) {
-        //   return Container(
-        //     color: Colors.blue,
-        //     child: Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //       children: [
-        //         IconButton(
-        //           icon: Icon(
-        //             Icons.arrow_back_outlined,
-        //             color: Colors.grey.shade800,
-        //           ),
-        //           onPressed: () {},
-        //         ),
-        //         SizedBox(
-        //           width: 20,
-        //         ),
-        //         Padding(
-        //           padding: const EdgeInsets.only(),
-        //           child: CircleAvatar(
-        //             radius: 40,
-        //             child: ClipRRect(
-        //               borderRadius: BorderRadius.circular(30.0),
-        //               child: Image.asset(
-        //                 'images/koala.jpg',
-        //                 fit: BoxFit.cover,
-        //                 height: 60,
-        //                 width: 60,
-        //               ),
-        //             ),
-        //           ),
-        //         ),
-        //       ],
-        //     ),
-        //   );
-        // }),
+        iconTheme: const IconThemeData.fallback(),
         actions: [
           IconButton(
             onPressed: () {},
@@ -84,7 +50,7 @@ class OrderManageState extends State<OrderManage> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width - 30,
+              width: width * 0.9,
               decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
@@ -96,13 +62,13 @@ class OrderManageState extends State<OrderManage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.person_outline,
                       color: Colors.grey,
                     ),
                     Container(
-                      margin: EdgeInsets.only(bottom: 5, top: 5),
-                      child: Text(
+                      margin: const EdgeInsets.only(bottom: 5, top: 5),
+                      child: const Text(
                         "My Account",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -114,13 +80,11 @@ class OrderManageState extends State<OrderManage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width - 30,
+            SizedBox(height: width * 0.04),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.04),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 115,
@@ -130,18 +94,18 @@ class OrderManageState extends State<OrderManage> {
                           color: Colors.grey.shade100,
                         ),
                         borderRadius: BorderRadius.circular(5),
-                        color: Color.fromARGB(179, 247, 247, 247)),
+                        color: const Color.fromARGB(179, 247, 247, 247)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.add_location_outlined,
                             color: Colors.grey,
                           ),
                           Container(
-                            margin: EdgeInsets.only(bottom: 5, top: 5),
-                            child: Text(
+                            margin: const EdgeInsets.only(bottom: 5, top: 5),
+                            child: const Text(
                               "Track",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -153,9 +117,6 @@ class OrderManageState extends State<OrderManage> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
                   Container(
                     width: 115,
                     decoration: BoxDecoration(
@@ -164,18 +125,18 @@ class OrderManageState extends State<OrderManage> {
                           color: Colors.grey.shade100,
                         ),
                         borderRadius: BorderRadius.circular(5),
-                        color: Color.fromARGB(179, 247, 247, 247)),
+                        color: const Color.fromARGB(179, 247, 247, 247)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.arrow_right_alt_outlined,
                             color: Colors.grey,
                           ),
                           Container(
-                            margin: EdgeInsets.only(bottom: 5, top: 5),
-                            child: Text(
+                            margin: const EdgeInsets.only(bottom: 5, top: 5),
+                            child: const Text(
                               "Return",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -187,9 +148,6 @@ class OrderManageState extends State<OrderManage> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
                   Container(
                     width: 115,
                     decoration: BoxDecoration(
@@ -198,18 +156,18 @@ class OrderManageState extends State<OrderManage> {
                           color: Colors.grey.shade100,
                         ),
                         borderRadius: BorderRadius.circular(5),
-                        color: Color.fromARGB(179, 247, 247, 247)),
+                        color: const Color.fromARGB(179, 247, 247, 247)),
                     child: Padding(
                       padding: const EdgeInsets.all(6.0),
                       child: Column(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.delete_forever_outlined,
                             color: Colors.grey,
                           ),
                           Container(
-                            margin: EdgeInsets.only(bottom: 5, top: 5),
-                            child: Text(
+                            margin: const EdgeInsets.only(bottom: 5, top: 5),
+                            child: const Text(
                               "Cancel",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
